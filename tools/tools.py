@@ -1,4 +1,5 @@
 import logging
+import os
 from logging.handlers import TimedRotatingFileHandler
 
 
@@ -31,3 +32,21 @@ def init_logger(logger_name, info_logger_path, debug_logger_path, debug=False):
         logger.addHandler(file_h_debug)
 
     logger.setLevel(logging.DEBUG) if debug else logger.setLevel(logging.INFO)
+
+
+def check_dir_existence(root_dir, dirs):
+    """
+    Checks if dirs are exist
+    :param root_dir: root dir to be used in the check
+    :type root_dir: str
+    :param dirs: list of dir names
+    :type dirs: list
+    :return: True or False
+    :rtype: bool
+    """
+    logger = logging.getLogger('time_speaker')
+    for d in dirs:
+        if not os.path.exists(os.path.join(root_dir, d)):
+            logger.error('check_dir_existence: There is no such a dir as {}'.format(os.path.join(root_dir, d)))
+            return False
+    return True
