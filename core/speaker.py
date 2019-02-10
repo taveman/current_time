@@ -18,7 +18,7 @@ class Speaker(SpeakerInterface):
         :param logger: logger to be used
         :type logger: Logger
         """
-        self.rate = 8000
+        self.rate = 44100
         self.logger = logger
 
     def say(self, target_files=None):
