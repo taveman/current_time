@@ -3,7 +3,7 @@ import os
 from logging.handlers import TimedRotatingFileHandler
 
 
-def init_logger(logger_name, info_logger_path, debug_logger_path, debug=False):
+def init_logger(info_logger_path, logger_name, debug_logger_path=None, debug=False):
     """
     Logger initializer
     :param logger_name: logger name to be used
@@ -15,6 +15,7 @@ def init_logger(logger_name, info_logger_path, debug_logger_path, debug=False):
     :param debug: does logger need to record debug information or doesn't
     :type debug: bool
     """
+
     logger = logging.getLogger(logger_name)
 
     formatter_info = logging.Formatter('%(levelname)s: %(asctime)s: %(name)s: %(message)s')

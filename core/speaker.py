@@ -36,6 +36,8 @@ class Speaker(SpeakerInterface):
         data_to_play = self._prepare_data(target_files)
         sd.play(data_to_play, self.rate)
         status = sd.wait()
+        if status:
+            self.logger.warning('Error while playing sound: status {}'.format(status))
 
     @classmethod
     def _prepare_data(cls, sound_files):
@@ -50,15 +52,3 @@ class Speaker(SpeakerInterface):
             all_data.append(data)
 
         return np.concatenate(all_data)
-
-
-if __name__ == '__main__':
-    import logging
-    files = [
-        '../sounds/time/FAC_1A.wav',
-        '../sounds/time/FAC_2A.wav',
-        '../sounds/time/FAC_3A.wav'
-    ]
-    a = Speaker(logger=logging.getLogger())
-    a.say(files)
-

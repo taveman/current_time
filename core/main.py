@@ -23,6 +23,7 @@ init_logger(
     debug_logger_path=os.path.join(parent_dir, 'logs/debug.log'),
     debug=True
 )
+
 logger = logging.getLogger('time_speaker')
 
 speaker = Speaker(logger=logger)
